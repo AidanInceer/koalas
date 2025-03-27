@@ -3,32 +3,34 @@ package main
 import (
 	"fmt"
 	"koalas/core/dataframe"
-	"koalas/core/schema"
 	"koalas/core/series"
-	"log"
 )
 
 func main() {
-	// Create a schema
-	// Create schema
-	columns := map[string]string{
-		"age":    "int",
-		"name":   "string",
-		"active": "bool",
-	}
-	schema := schema.Create(columns)
-
 	// Create series (order doesn't matter)
 	activeSeries, _ := series.Create("active", "bool", []interface{}{true, false, true})
 	ageSeries, _ := series.Create("age", "int", []interface{}{20, 30, 40})
 	nameSeries, _ := series.Create("name", "string", []interface{}{"John", "Jane", "Bob"})
 
 	// Create DataFrame - order doesn't matter
-	df, err := dataframe.Create(schema, []*series.Series{activeSeries, ageSeries, nameSeries})
-	if err != nil {
-		log.Fatal(err)
-	}
+	df, _ := dataframe.Create([]*series.Series{activeSeries, ageSeries, nameSeries})
 
-	// Display the DataFrame
-	fmt.Println(df.Display())
+	// Create second DataFrame with same columns but different data
+	activeSeries2, _ := series.Create("active", "bool", []interface{}{false, true, false})
+	ageSeries2, _ := series.Create("age", "int", []interface{}{25, 35, 45})
+	nameSeries2, _ := series.Create("name", "string", []interface{}{"Alice", "Charlie", "David"})
+
+	df2, _ := dataframe.Create([]*series.Series{activeSeries2, ageSeries2, nameSeries2})
+
+	// Display both DataFrames
+	fmt.Println("First DataFrame:")
+	df.Display()
+
+	fmt.Println("\nSecond DataFrame:")
+	df2.Display()
+
+	df, _ = df.Union(df2)
+
+	fmt.Println("\nUnion DataFrame:")
+	df.Display()
 }
