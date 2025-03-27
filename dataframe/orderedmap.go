@@ -1,6 +1,6 @@
 package dataframe
 
-import "koalas/core/series"
+import "koalas/series"
 
 // OrderedMap maintains insertion order of keys
 type OrderedMap struct {

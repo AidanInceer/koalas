@@ -21,3 +21,13 @@ func Zip[T, U any](list1 []T, list2 []U) []struct {
 	}
 	return result
 }
+
+// contains checks if a string is in a *small list of strings
+func StringContains(list []string, target string) bool {
+	for _, v := range list {
+		if v == target {
+			return true
+		}
+	}
+	return false
+}

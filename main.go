@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"koalas/core/dataframe"
-	"koalas/core/series"
+	"koalas/dataframe"
+	"koalas/series"
 )
 
 func main() {
