@@ -80,6 +80,11 @@ func Create(name string, datatype string, values []interface{}) (*Series, error)
 
 // IsValidType checks if a value matches the expected data type
 func IsValidType(value interface{}, datatype string) bool {
+	// Allow nil values for any type
+	if value == nil {
+		return true
+	}
+
 	switch datatype {
 	case "int":
 		_, ok := value.(int)

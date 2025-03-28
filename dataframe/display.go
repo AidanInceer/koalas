@@ -6,7 +6,11 @@ import (
 )
 
 // Display methods
-func (df *DataFrame) Display() {
+func (df *DataFrame) Display(showSchema bool) {
+	if showSchema {
+		df.DisplaySchema()
+	}
+
 	if df.numRows == 0 {
 		fmt.Println("Empty DataFrame")
 		return

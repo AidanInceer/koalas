@@ -18,6 +18,7 @@ type ColumnInfo struct {
 	DataType string
 }
 
+
 // Constructor
 func Create(seriesList []*series.Series) (*DataFrame, error) {
 	// Create map of series by name for easier lookup
